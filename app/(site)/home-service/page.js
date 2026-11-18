@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import SplitTitle from '@/components/SplitTitle';
 import Faq from '@/components/Faq';
-import VanArt from '@/components/VanArt';
+import ScooterArt from '@/components/ScooterArt';
 import { Arrow } from '@/components/Icons';
 import { getSettings } from '@/lib/data';
 import { peso } from '@/lib/utils';
@@ -32,7 +32,7 @@ export default async function HomeServicePage() {
                 <li>We clean up, pack out all sharps safely, and leave you with aftercare instructions.</li>
               </ul>
             </div>
-            <div className="visual" aria-hidden="true"><div className="van"><VanArt /></div><div className="road" /></div>
+            <div className="visual" aria-hidden="true"><div className="van"><ScooterArt /></div><div className="road" /></div>
           </div>
         </div>
       </section>

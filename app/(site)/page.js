@@ -8,7 +8,7 @@ import Faq from '@/components/Faq';
 import Visit from '@/components/Visit';
 import SplitTitle from '@/components/SplitTitle';
 import { Arrow } from '@/components/Icons';
-import VanArt from '@/components/VanArt';
+import ScooterArt from '@/components/ScooterArt';
 import { Emblem } from '@/components/Logo';
 import { getArtists, getArtworks, getServices, getSettings, getTestimonials } from '@/lib/data';
 import { peso } from '@/lib/utils';
@@ -210,7 +210,7 @@ export default async function Home() {
               </div>
             </div>
             <div className="visual" aria-hidden="true">
-              <div className="van"><VanArt /></div>
+              <div className="van"><ScooterArt /></div>
               <div className="road" />
             </div>
           </div>

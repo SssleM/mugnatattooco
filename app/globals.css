@@ -362,7 +362,20 @@ a:hover > .roll span, .roll:hover span { transform: translateY(-100%); }
 .home-service .copy { padding: clamp(32px, 5vw, 72px); }
 .home-service .visual { position: relative; min-height: 380px; background: radial-gradient(circle at 30% 40%, rgba(200, 50, 43, 0.45), transparent 60%), var(--bg-2); overflow: hidden; }
 .home-service .van { position: absolute; inset: 0; display: grid; place-items: center; }
-.home-service .van svg { width: 78%; animation: bob 3.2s ease-in-out infinite; }
+.home-service .van > svg { width: 82%; max-width: 520px; animation: bob 1.6s ease-in-out infinite; overflow: visible; }
+.scooter .wheel-spin { transform-box: fill-box; transform-origin: center; animation: spin 0.7s linear infinite; }
+.scooter .puffs circle { transform-box: fill-box; transform-origin: center; animation: puff 1.5s ease-out infinite; opacity: 0; }
+.scooter .puffs circle:nth-child(2) { animation-delay: 0.5s; }
+.scooter .puffs circle:nth-child(3) { animation-delay: 1s; }
+@keyframes puff { 0% { opacity: 0.6; transform: translate(0, 0) scale(0.6); } 100% { opacity: 0; transform: translate(-60px, -14px) scale(2.4); } }
+.scooter .speed-lines path { animation: dash 0.9s linear infinite; stroke-dasharray: 20 14; }
+@keyframes dash { to { stroke-dashoffset: 34; } }
+.scooter .beam { animation: beam 2.4s ease-in-out infinite; }
+@keyframes beam { 50% { opacity: 0.22; } }
+.scooter .kit { transform-box: fill-box; transform-origin: bottom center; animation: jiggle 0.8s ease-in-out infinite; }
+@keyframes jiggle { 50% { transform: rotate(-2deg) translateY(-1px); } }
+.home-service:hover .scooter .wheel-spin { animation-duration: 0.3s; }
+.home-service:hover .van > svg { animation-duration: 0.8s; }
 @keyframes bob { 50% { transform: translateY(-10px); } }
 .road { position: absolute; left: 0; right: 0; bottom: 18%; height: 2px; background: repeating-linear-gradient(90deg, var(--bone) 0 40px, transparent 40px 80px); opacity: 0.35; animation: road 1s linear infinite; }
 @keyframes road { to { background-position: -80px 0; } }
