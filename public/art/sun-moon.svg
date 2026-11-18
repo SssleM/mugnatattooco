@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 750" width="600" height="750">
+<defs>
+  <radialGradient id="bg" cx="50%" cy="45%" r="75%"><stop offset="0" stop-color="#1f1917"/><stop offset="1" stop-color="#0c0a09"/></radialGradient>
+  <filter id="grain"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" stitchTiles="stitch"/><feColorMatrix values="0 0 0 0 1  0 0 0 0 .95  0 0 0 0 .9  0 0 0 .05 0"/></filter>
+</defs>
+<rect width="600" height="750" fill="url(#bg)"/>
+<rect width="600" height="750" filter="url(#grain)"/>
+<rect x="22" y="22" width="556" height="706" fill="none" stroke="#efe5d3" stroke-opacity=".14" stroke-width="1.5"/>
+<g stroke-linecap="round" stroke-linejoin="round">
+  <g fill="none" stroke="#efe5d3" stroke-width="2.6">
+    <path d="M300 500 Q282.75 544.1 300 590"/><path d="M279.16 498.18 L272.22 537.57"/><path d="M258.96 492.76 Q227.67 528.3 228.18 577.34"/><path d="M240 483.92 L220 518.56"/><path d="M222.87 471.93 Q181.31 494.62 165.01 540.87"/><path d="M208.07 457.13 L177.43 482.85"/><path d="M196.08 440 Q149.26 447.11 118.13 485"/><path d="M187.24 421.04 L149.65 434.72"/><path d="M181.82 400.84 Q135.4 391.51 93.19 416.47"/><path d="M180 380 L140 380"/><path d="M181.82 359.16 Q141.39 334.52 93.19 343.53"/><path d="M187.24 338.96 L149.65 325.28"/><path d="M196.08 320 Q166.51 283.02 118.13 275"/><path d="M208.07 302.87 L177.43 277.15"/><path d="M222.87 288.07 Q207.73 243.21 165.01 219.13"/><path d="M240 276.08 L220 241.44"/><path d="M258.96 267.24 Q260.08 219.9 228.18 182.66"/><path d="M279.16 261.82 L272.22 222.43"/>
+    <circle cx="300" cy="380" r="110"/>
+    <path d="M300 270 L300 490"/>
+    <path d="M300 286 A94 94 0 0 1 300 474 A70 94 0 0 0 300 286 Z" fill="#efe5d3" fill-opacity=".9"/>
+    <path d="M232 360 q14 -12 28 0 M240 410 q12 12 26 0 M228 336 q20 -14 40 -4"/>
+    <circle cx="300" cy="380" r="128" stroke-dasharray="1 9"/>
+  </g>
+  <g fill="#d9a441"><path d="M430 234 L431.5 238.5 L436 240 L431.5 241.5 L430 246 L428.5 241.5 L424 240 L428.5 238.5 Z"/><path d="M470 319 L472.75 327.25 L481 330 L472.75 332.75 L470 341 L467.25 332.75 L459 330 L467.25 327.25 Z"/><path d="M450 464 L451.5 468.5 L456 470 L451.5 471.5 L450 476 L448.5 471.5 L444 470 L448.5 468.5 Z"/><path d="M400 529 L402.75 537.25 L411 540 L402.75 542.75 L400 551 L397.25 542.75 L389 540 L397.25 537.25 Z"/><path d="M420 174 L421.5 178.5 L426 180 L421.5 181.5 L420 186 L418.5 181.5 L414 180 L418.5 178.5 Z"/></g>
+</g>
+<text x="300" y="704" text-anchor="middle" font-family="Georgia, serif" font-size="15" letter-spacing="6" fill="#efe5d3" fill-opacity=".38">SUN &amp; MOON</text>
+</svg>

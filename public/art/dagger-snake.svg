@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 750" width="600" height="750">
+<defs>
+  <radialGradient id="bg" cx="50%" cy="45%" r="75%"><stop offset="0" stop-color="#1f1917"/><stop offset="1" stop-color="#0c0a09"/></radialGradient>
+  <filter id="grain"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" stitchTiles="stitch"/><feColorMatrix values="0 0 0 0 1  0 0 0 0 .95  0 0 0 0 .9  0 0 0 .05 0"/></filter>
+</defs>
+<rect width="600" height="750" fill="url(#bg)"/>
+<rect width="600" height="750" filter="url(#grain)"/>
+<rect x="22" y="22" width="556" height="706" fill="none" stroke="#efe5d3" stroke-opacity=".14" stroke-width="1.5"/>
+<g stroke-linecap="round" stroke-linejoin="round">
+  <g stroke="#efe5d3" stroke-width="5">
+    <path d="M300 610 L276 300 L324 300 Z" fill="#cfc6b6"/>
+    <path d="M300 600 L300 305" stroke="#0d0b0a" stroke-width="3"/>
+    <rect x="222" y="282" width="156" height="24" rx="12" fill="#d9a441"/>
+    <circle cx="222" cy="294" r="16" fill="#d9a441"/><circle cx="378" cy="294" r="16" fill="#d9a441"/>
+    <rect x="286" y="190" width="28" height="94" rx="6" fill="#0d0b0a"/>
+    <circle cx="300" cy="176" r="20" fill="#d9a441"/>
+  </g>
+  <g stroke="#efe5d3" stroke-width="3" opacity=".8"><path d="M288 204 L312 214"/><path d="M288 220 L312 230"/><path d="M288 236 L312 246"/><path d="M288 252 L312 262"/><path d="M288 268 L312 278"/></g>
+  <path d="M372 236 C440 270,400 336,300 346 C196 356,196 420,300 430 C398 440,410 494,318 512 C262 522,240 552,268 590" fill="none" stroke="#efe5d3" stroke-width="34"/>
+  <path d="M372 236 C440 270,400 336,300 346 C196 356,196 420,300 430 C398 440,410 494,318 512 C262 522,240 552,268 590" fill="none" stroke="#c8322b" stroke-width="24"/>
+  <path d="M372 236 C440 270,400 336,300 346 C196 356,196 420,300 430 C398 440,410 494,318 512 C262 522,240 552,268 590" fill="none" stroke="#0d0b0a" stroke-width="3" stroke-dasharray="2 14"/>
+  <path d="M300 300 L300 330" stroke="#cfc6b6" stroke-width="20"/>
+  <g transform="translate(372 232) rotate(-28)">
+    <ellipse rx="40" ry="24" fill="#c8322b" stroke="#efe5d3" stroke-width="5"/>
+    <circle cx="14" cy="-8" r="6" fill="#d9a441" stroke="#0d0b0a" stroke-width="2"/>
+    <path d="M38 4 L62 8 L72 0 M62 8 L72 14" fill="none" stroke="#c8322b" stroke-width="3"/>
+  </g>
+  <g fill="#d9a441"><path d="M160 186 L164 196 L174 200 L164 204 L160 214 L156 204 L146 200 L156 196 Z"/><path d="M450 406 L454 416 L464 420 L454 424 L450 434 L446 424 L436 420 L446 416 Z"/><path d="M180 546 L184 556 L194 560 L184 564 L180 574 L176 564 L166 560 L176 556 Z"/><path d="M430 586 L434 596 L444 600 L434 604 L430 614 L426 604 L416 600 L426 596 Z"/></g>
+</g>
+<text x="300" y="704" text-anchor="middle" font-family="Georgia, serif" font-size="15" letter-spacing="6" fill="#efe5d3" fill-opacity=".38">SERPENT &amp; DAGGER</text>
+</svg>

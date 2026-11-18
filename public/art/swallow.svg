@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 750" width="600" height="750">
+<defs>
+  <radialGradient id="bg" cx="50%" cy="45%" r="75%"><stop offset="0" stop-color="#1f1917"/><stop offset="1" stop-color="#0c0a09"/></radialGradient>
+  <filter id="grain"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" stitchTiles="stitch"/><feColorMatrix values="0 0 0 0 1  0 0 0 0 .95  0 0 0 0 .9  0 0 0 .05 0"/></filter>
+</defs>
+<rect width="600" height="750" fill="url(#bg)"/>
+<rect width="600" height="750" filter="url(#grain)"/>
+<rect x="22" y="22" width="556" height="706" fill="none" stroke="#efe5d3" stroke-opacity=".14" stroke-width="1.5"/>
+<g stroke-linecap="round" stroke-linejoin="round">
+  <g stroke="#efe5d3" stroke-width="6">
+    <path d="M262 340 C300 236,380 186,486 168 C430 214,412 254,392 292 C360 326,306 346,262 340 Z" fill="#1f3657"/>
+    <path d="M300 300 C330 260,370 236,420 222 M318 318 C350 290,380 274,410 264" fill="none" stroke-width="3"/>
+    <path d="M196 352 C240 404,320 434,404 444 L480 534 L440 456 L516 474 L424 420 C360 380,282 338,238 312 C222 306,204 320,196 352 Z" fill="#1f3657"/>
+    <path d="M206 364 C232 404,272 420,312 416 C276 400,246 380,226 348 Z" fill="#c8322b"/>
+    <path d="M288 392 C266 464,226 524,158 566 C236 548,300 504,340 420 Z" fill="#1f3657"/>
+    <path d="M290 430 C270 480,240 510,210 530" fill="none" stroke-width="3"/>
+    <circle cx="226" cy="330" r="34" fill="#1f3657"/>
+    <path d="M194 322 L164 334 L196 342 Z" fill="#d9a441" stroke-width="4"/>
+  </g>
+  <circle cx="220" cy="324" r="7" fill="#efe5d3"/><circle cx="221" cy="325" r="3" fill="#0d0b0a"/>
+  <path d="M120 600 C200 560,260 640,340 600 C400 570,440 610,480 590" fill="none" stroke="#d9a441" stroke-width="4"/>
+  <g fill="#d9a441"><circle cx="130" cy="220" r="5"/><circle cx="470" cy="330" r="4"/><circle cx="160" cy="470" r="3"/></g>
+</g>
+<text x="300" y="704" text-anchor="middle" font-family="Georgia, serif" font-size="15" letter-spacing="6" fill="#efe5d3" fill-opacity=".38">SWALLOW</text>
+</svg>

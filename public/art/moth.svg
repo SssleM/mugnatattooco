@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 750" width="600" height="750">
+<defs>
+  <radialGradient id="bg" cx="50%" cy="45%" r="75%"><stop offset="0" stop-color="#1f1917"/><stop offset="1" stop-color="#0c0a09"/></radialGradient>
+  <filter id="grain"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" stitchTiles="stitch"/><feColorMatrix values="0 0 0 0 1  0 0 0 0 .95  0 0 0 0 .9  0 0 0 .05 0"/></filter>
+</defs>
+<rect width="600" height="750" fill="url(#bg)"/>
+<rect width="600" height="750" filter="url(#grain)"/>
+<rect x="22" y="22" width="556" height="706" fill="none" stroke="#efe5d3" stroke-opacity=".14" stroke-width="1.5"/>
+<g stroke-linecap="round" stroke-linejoin="round">
+  <g fill="none" stroke="#efe5d3" stroke-width="2.4">
+    
+  <path d="M300 336 C236 252,138 236,108 290 C86 340,168 392,300 388"/>
+  <path d="M300 396 C228 402,168 450,196 502 C226 544,290 470,300 420"/>
+  <circle cx="186" cy="310" r="26"/><circle cx="186" cy="310" r="12"/>
+  <path d="M150 284 C170 266,214 266,240 300 M128 330 C170 352,230 364,290 368"/>
+  <path d="M220 440 C236 460,250 470,270 470"/>
+  <circle cx="120" cy="352" r="2" fill="#efe5d3"/><circle cx="142" cy="348.16459569116637" r="2" fill="#efe5d3"/><circle cx="164" cy="345.2682321215368" r="2" fill="#efe5d3"/><circle cx="186" cy="344.0200401071676" r="2" fill="#efe5d3"/><circle cx="208" cy="344.72562058539455" r="2" fill="#efe5d3"/><circle cx="230" cy="347.21222284716833" r="2" fill="#efe5d3"/><circle cx="252" cy="350.8710399355211" r="2" fill="#efe5d3"/><circle cx="274" cy="354.80626582151694" r="2" fill="#efe5d3"/>
+    <g transform="translate(600 0) scale(-1 1)">
+  <path d="M300 336 C236 252,138 236,108 290 C86 340,168 392,300 388"/>
+  <path d="M300 396 C228 402,168 450,196 502 C226 544,290 470,300 420"/>
+  <circle cx="186" cy="310" r="26"/><circle cx="186" cy="310" r="12"/>
+  <path d="M150 284 C170 266,214 266,240 300 M128 330 C170 352,230 364,290 368"/>
+  <path d="M220 440 C236 460,250 470,270 470"/>
+  <circle cx="120" cy="352" r="2" fill="#efe5d3"/><circle cx="142" cy="348.16459569116637" r="2" fill="#efe5d3"/><circle cx="164" cy="345.2682321215368" r="2" fill="#efe5d3"/><circle cx="186" cy="344.0200401071676" r="2" fill="#efe5d3"/><circle cx="208" cy="344.72562058539455" r="2" fill="#efe5d3"/><circle cx="230" cy="347.21222284716833" r="2" fill="#efe5d3"/><circle cx="252" cy="350.8710399355211" r="2" fill="#efe5d3"/><circle cx="274" cy="354.80626582151694" r="2" fill="#efe5d3"/></g>
+    <ellipse cx="300" cy="392" rx="14" ry="70"/>
+    <path d="M288 350 C296 356,304 356,312 350"/><path d="M288 370 C296 376,304 376,312 370"/><path d="M288 390 C296 396,304 396,312 390"/><path d="M288 410 C296 416,304 416,312 410"/><path d="M288 430 C296 436,304 436,312 430"/>
+    <circle cx="300" cy="312" r="14"/>
+    <path d="M294 300 C280 260,250 240,230 236 M306 300 C320 260,350 240,370 236"/>
+    <path d="M286 284 l-8 -10 M314 284 l8 -10"/><path d="M274 275 l-8 -10 M326 275 l8 -10"/><path d="M262 266 l-8 -10 M338 266 l8 -10"/><path d="M250 257 l-8 -10 M350 257 l8 -10"/><path d="M238 248 l-8 -10 M362 248 l8 -10"/>
+    <path d="M330 150 A44 44 0 1 1 270 150 A34 34 0 1 0 330 150 Z" fill="#efe5d3" stroke="none" transform="rotate(180 300 150)"/>
+  </g>
+  <g fill="#efe5d3"><circle cx="150" cy="170" r="2.5"/><circle cx="450" cy="190" r="2.5"/><circle cx="130" cy="560" r="2.5"/><circle cx="470" cy="540" r="2.5"/><circle cx="300" cy="600" r="2.5"/></g>
+  <path d="M300 498 L300 590" stroke="#efe5d3" stroke-width="2" stroke-dasharray="2 8" fill="none"/>
+</g>
+<text x="300" y="704" text-anchor="middle" font-family="Georgia, serif" font-size="15" letter-spacing="6" fill="#efe5d3" fill-opacity=".38">MOON MOTH</text>
+</svg>
