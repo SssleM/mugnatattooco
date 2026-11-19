@@ -6,6 +6,8 @@ const RED = '#c8322b';
 const GOLD = '#d9a441';
 const SKIN = '#c98f65';
 const DENIM = '#2a3a55';
+const CYAN = '#36c9d6';
+const CYAN_DARK = '#1b8f9c';
 
 function Wheel({ cx, cy }) {
   return (
@@ -52,8 +54,8 @@ export default function ScooterArt() {
       <Wheel cx={318} cy={192} />
 
       {/* rear body / side panel */}
-      <path d="M66 170 C60 138 84 116 126 116 L214 116 C232 116 240 130 235 148 L226 178 L96 182 C80 182 70 178 66 170 Z" fill={BONE} stroke={INK} strokeWidth="3" />
-      <path d="M78 156 C110 150 180 150 228 152" stroke={RED} strokeWidth="9" />
+      <path d="M66 170 C60 138 84 116 126 116 L214 116 C232 116 240 130 235 148 L226 178 L96 182 C80 182 70 178 66 170 Z" fill={CYAN} stroke={INK} strokeWidth="3" />
+      <path d="M78 156 C110 150 180 150 228 152" stroke={BONE} strokeWidth="9" />
       <text x="104" y="141" fontFamily="Georgia, serif" fontSize="15" fontWeight="bold" letterSpacing="2" fill={INK}>MUGNA</text>
       {/* rear light */}
       <path d="M66 140 q-6 8 0 16" stroke={RED} strokeWidth="6" />
@@ -66,11 +68,11 @@ export default function ScooterArt() {
       <path d="M112 107 H204" stroke={BONE} strokeOpacity=".35" strokeWidth="2" strokeDasharray="4 5" />
 
       {/* front leg-shield / apron */}
-      <path d="M262 182 L280 184 C306 150 306 108 290 72 L270 70 C278 110 272 148 250 176 Z" fill={BONE} stroke={INK} strokeWidth="3" />
-      <path d="M284 88 C292 116 290 146 274 172" stroke={RED} strokeWidth="6" />
+      <path d="M262 182 L280 184 C306 150 306 108 290 72 L270 70 C278 110 272 148 250 176 Z" fill={CYAN} stroke={INK} strokeWidth="3" />
+      <path d="M284 88 C292 116 290 146 274 172" stroke={BONE} strokeWidth="6" />
 
       {/* front fender */}
-      <path d="M280 182 C286 152 344 150 352 182 L340 182 C334 166 296 166 292 182 Z" fill={RED} stroke={BONE} strokeWidth="3" />
+      <path d="M280 182 C286 152 344 150 352 182 L340 182 C334 166 296 166 292 182 Z" fill={CYAN_DARK} stroke={BONE} strokeWidth="3" />
       {/* fork */}
       <path d="M300 112 L318 190" stroke="#1a1513" strokeWidth="7" />
 
@@ -85,7 +87,7 @@ export default function ScooterArt() {
       <text x="160" y="90" fontFamily="Georgia, serif" fontSize="9" fill={RED} transform="rotate(-53 168 84)">INK</text>
 
       {/* handlebar cowl + headlight */}
-      <path d="M262 62 C266 46 300 44 306 58 C304 68 270 70 262 62 Z" fill={BONE} stroke={INK} strokeWidth="3" />
+      <path d="M262 62 C266 46 300 44 306 58 C304 68 270 70 262 62 Z" fill={CYAN} stroke={INK} strokeWidth="3" />
       <circle cx="304" cy="60" r="11" fill={GOLD} stroke={INK} strokeWidth="3" />
       <circle cx="306" cy="58" r="4" fill="#fff6dd" />
       <path d="M268 50 L250 44" stroke="#1a1513" strokeWidth="7" />
