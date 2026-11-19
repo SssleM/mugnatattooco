@@ -11,7 +11,7 @@ const fmtTime = (t) => {
   return `${((h + 11) % 12) + 1}:${String(m).padStart(2, '0')} ${h >= 12 ? 'PM' : 'AM'}`;
 };
 
-export default function BookingForm({ action, services, artists, booking, gcash, paymongo, initial, minDate }) {
+export default function BookingForm({ action, services, artists, booking, wallet, paymongo, initial, minDate }) {
   const router = useRouter();
   const formRef = useRef(null);
   const [step, setStep] = useState(0);
@@ -227,17 +227,17 @@ export default function BookingForm({ action, services, artists, booking, gcash,
 
         {/* STEP 5 — deposit */}
         <div className="step-panel" data-step="4" hidden={step !== 4}>
-          <h2 className="display">Secure with Maya</h2>
+          <h2 className="display">Secure with {wallet.name}</h2>
           <p className="muted" style={{ margin: 0 }}>Pay a partial deposit of <strong className="gold">{peso(service?.deposit)}</strong> to lock in your slot. It is deducted from your final price.</p>
           {paymongo && (
             <div className="choices">
               <label className="choice">
                 <input type="radio" name="pay_method" value="paymongo" defaultChecked />
-                <span className="box"><strong>Pay with Maya app</strong><small>Instant checkout, confirmed automatically.</small></span>
+                <span className="box"><strong>Pay with {wallet.name} app</strong><small>Instant checkout, confirmed automatically.</small></span>
               </label>
               <label className="choice">
                 <input type="radio" name="pay_method" value="manual" />
-                <span className="box"><strong>Send via Maya QR</strong><small>Send manually, then upload your receipt.</small></span>
+                <span className="box"><strong>Send via {wallet.name} QR</strong><small>Send manually, then upload your receipt.</small></span>
               </label>
             </div>
           )}
@@ -245,30 +245,30 @@ export default function BookingForm({ action, services, artists, booking, gcash,
 
           {values.pay_method === 'manual' ? (
             <>
-              <div className="gcash-box">
+              <div className={`wallet-box ${wallet.key}`}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={gcash.qrUrl} alt="Maya QR code" />
+                <img src={wallet.qrUrl} alt={`${wallet.name} QR code`} />
                 <div>
-                  <span className="gcash-logo"><b>G</b> GCash</span>
+                  <span className="wallet-logo"><b>{wallet.name.slice(0, 1)}</b> {wallet.name}</span>
                   <p style={{ margin: '14px 0 2px', opacity: 0.85 }}>Send exactly</p>
                   <div className="num">{peso(service?.deposit)}</div>
-                  <p style={{ margin: '12px 0 2px', opacity: 0.85 }}>to {gcash.accountName}</p>
-                  <div className="num" style={{ fontSize: 26 }}>{gcash.number}</div>
+                  <p style={{ margin: '12px 0 2px', opacity: 0.85 }}>to {wallet.accountName}</p>
+                  <div className="num" style={{ fontSize: 26 }}>{wallet.number}</div>
                 </div>
               </div>
               <div className="grid-2">
                 <div className="field">
-                  <label htmlFor="gcash_ref">Maya reference no.</label>
+                  <label htmlFor="gcash_ref">{wallet.name} reference no.</label>
                   <input id="gcash_ref" name="gcash_ref" className="input" required minLength={6} placeholder="e.g. 1012 345 678901" inputMode="numeric" />
                 </div>
                 <div className="field">
                   <span className="label">Receipt screenshot</span>
-                  <ImageDrop name="receipt" label="Upload receipt" hint="Screenshot of your Maya confirmation" />
+                  <ImageDrop name="receipt" label="Upload receipt" hint={`Screenshot of your ${wallet.name} confirmation`} />
                 </div>
               </div>
             </>
           ) : (
-            <div className="alert alert-ok">You will be redirected to a secure Maya checkout (via PayMongo) after you confirm. Your slot is held for you while you pay.</div>
+            <div className="alert alert-ok">You will be redirected to a secure {wallet.name} checkout (via PayMongo) after you confirm. Your slot is held for you while you pay.</div>
           )}
           <label style={{ display: 'flex', gap: 12, alignItems: 'flex-start', cursor: 'pointer' }}>
             <input type="checkbox" name="agree" required style={{ marginTop: 5, accentColor: 'var(--red)' }} />
@@ -284,7 +284,7 @@ export default function BookingForm({ action, services, artists, booking, gcash,
             <button type="button" className="btn btn-sm" onClick={next} data-magnetic>Continue <Arrow /></button>
           ) : (
             <button type="submit" className="btn btn-red" disabled={pending} data-magnetic>
-              {pending ? 'Booking…' : values.pay_method === 'paymongo' ? 'Pay deposit with Maya' : 'Confirm booking'} <Arrow />
+              {pending ? 'Booking…' : values.pay_method === 'paymongo' ? `Pay deposit with ${wallet.name}` : 'Confirm booking'} <Arrow />
             </button>
           )}
         </div>

@@ -8,9 +8,9 @@ Website and staff admin for **MUGNA Tattoo Co.**, a custom tattoo studio. It is 
 - Animated hero banner: an ink-smoke canvas that follows the cursor, letters that slide up and outline on hover, floating flash cards with parallax, a spinning badge and an intro preloader
 - Motion throughout: a custom cursor ("View", "Book", "Profile" labels), magnetic buttons, 3D tilt and glare on artwork, a red ink wipe over art cards, text scramble on artist names, scroll reveals, marquees, counters and a fill sweep on service rows
 - Pages: Home, Artists, Artist profile (portfolio + reviews), Gallery (filters + lightbox), Home Service, Reviews (with a submit form), Aftercare, Visit (Google Map + hours), Book, Booking confirmation
-- **Booking wizard** in 5 steps: service, studio or home service, artist, date and live time-slot availability, design details with a reference image upload, contact details, and a **GCash partial deposit**
-  - **Manual GCash** (default): the customer scans your QR, enters the reference number and uploads a receipt screenshot. Staff verify it with one click.
-  - **Instant GCash** (optional): through PayMongo checkout. Payment is confirmed automatically.
+- **Booking wizard** in 5 steps: service, studio or home service, artist, date and live time-slot availability, design details with a reference image upload, contact details, and a **Maya partial deposit (switchable to GCash in Admin → Settings)**
+  - **Manual Maya** (default): the customer scans your QR, enters the reference number and uploads a receipt screenshot. Staff verify it with one click.
+  - **Instant Maya** (optional): through PayMongo checkout. Payment is confirmed automatically.
 
 **Staff admin** at `/admin`
 - Dashboard: pending bookings, GCash deposits to verify, today and next 7 days, home-service jobs, deposits for the last 30 days

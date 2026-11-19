@@ -9,7 +9,7 @@ export const metadata = {
   metadataBase: new URL(process.env.SITE_URL || 'http://localhost:3000'),
   title: { default: 'MUGNA Tattoo Co. — Custom Tattoo Studio', template: '%s · MUGNA Tattoo Co.' },
   description:
-    'MUGNA Tattoo Co. is an independent custom tattoo studio. Neo-traditional, fine line, blackwork and geometric tattoos, home service, and online booking with a GCash deposit.',
+    'MUGNA Tattoo Co. is an independent custom tattoo studio. Neo-traditional, fine line, blackwork and geometric tattoos, home service, and online booking with a Maya deposit.',
   openGraph: { title: 'MUGNA Tattoo Co.', description: 'Ink that is made, not copied.', images: ['/og.jpg'] },
 };
 

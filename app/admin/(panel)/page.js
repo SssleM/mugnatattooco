@@ -21,7 +21,7 @@ export default async function Dashboard() {
 
   const kpis = [
     ['Need confirmation', k.pending, '/admin/bookings?status=pending', k.pending > 0],
-    ['GCash to verify', k.verify, '/admin/bookings?pay=pending_verification', k.verify > 0],
+    ['Payments to verify', k.verify, '/admin/bookings?pay=pending_verification', k.verify > 0],
     ['Sessions today', k.today, '/admin/bookings?when=today'],
     ['Next 7 days', k.week, '/admin/bookings?when=upcoming'],
     ['Deposits (30d)', peso(k.deposits), '/admin/bookings?pay=paid'],

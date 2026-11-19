@@ -5,7 +5,8 @@ import { db } from '@/lib/db';
 import { getArtists, getSettings, getTakenSlots } from '@/lib/data';
 import { saveImage } from '@/lib/storage';
 import { checkDate, takenSlots } from '@/lib/booking-rules';
-import { createGcashCheckout, paymongoEnabled } from '@/lib/paymongo';
+import { createWalletCheckout, paymongoEnabled } from '@/lib/paymongo';
+import { getWallet } from '@/lib/wallet';
 
 const str = (v, max = 500) => String(v ?? '').trim().slice(0, max);
 
@@ -61,7 +62,7 @@ export async function createBooking(_prev, fd) {
     const usePaymongo = fd.get('pay_method') === 'paymongo' && paymongoEnabled();
     const gcashRef = str(fd.get('gcash_ref'), 40);
     if (!usePaymongo && gcashRef.replace(/\s/g, '').length < 6) {
-      return { error: 'Please enter the GCash reference number of your deposit.', step: 4 };
+      return { error: `Please enter the ${getWallet(settings.gcash).name} reference number of your deposit.`, step: 4 };
     }
 
     const referenceUrl = await saveImage(fd.get('reference'), 'references');
@@ -95,7 +96,7 @@ export async function createBooking(_prev, fd) {
     await sql`INSERT INTO bookings ${sql(booking)}`;
 
     if (usePaymongo) {
-      const checkout = await createGcashCheckout({ booking, baseUrl: await baseUrl() });
+      const checkout = await createWalletCheckout({ booking, baseUrl: await baseUrl(), wallet: getWallet(settings.gcash) });
       await sql`UPDATE bookings SET paymongo_session_id = ${checkout.id} WHERE code = ${booking.code}`;
       return { redirect: checkout.url, code: booking.code };
     }

@@ -12,6 +12,7 @@ import ScooterArt from '@/components/ScooterArt';
 import { Emblem } from '@/components/Logo';
 import { getArtists, getArtworks, getServices, getSettings, getTestimonials } from '@/lib/data';
 import { peso } from '@/lib/utils';
+import { getWallet } from '@/lib/wallet';
 
 export default async function Home() {
   const [settings, artists, featured, services, testimonials] = await Promise.all([
@@ -22,6 +23,7 @@ export default async function Home() {
     getTestimonials({ limit: 12 }),
   ]);
   const { shop, booking } = settings;
+  const wallet = getWallet(settings.gcash).name;
   const heroArt = featured.slice(0, 3).map((w) => w.image_url);
   const years = new Date().getFullYear() - Number(shop.founded || 2014);
   const avg = testimonials.length ? (testimonials.reduce((s, t) => s + t.rating, 0) / testimonials.length).toFixed(1) : '5.0';
@@ -50,7 +52,7 @@ export default async function Home() {
           <div className="hero-sub">
             <span className="gothic hero-anim" style={{ '--d': '2.4s' }}>Tattoo Co.</span>
             <p className="hero-anim" style={{ '--d': '2.55s' }}>
-              <em className="gold" style={{ fontStyle: 'normal' }}>Mugna</em> — to create. Custom tattoos drawn by hand for you alone. Studio sessions or home service, booked in minutes with a GCash deposit.
+              <em className="gold" style={{ fontStyle: 'normal' }}>Mugna</em> — to create. Custom tattoos drawn by hand for you alone. Studio sessions or home service, booked in minutes with a {wallet} deposit.
             </p>
           </div>
           <div className="hero-foot">
@@ -163,7 +165,7 @@ export default async function Home() {
         </div>
       </section>
 
-      <Marquee variant="red reverse" speed="26s" items={['Book online', 'Pay deposit via GCash', 'Studio or home service', 'Book online', 'Pay deposit via GCash', 'Studio or home service']} />
+      <Marquee variant="red reverse" speed="26s" items={['Book online', `Pay deposit via ${wallet}`, 'Studio or home service', 'Book online', `Pay deposit via ${wallet}`, 'Studio or home service']} />
 
       {/* ================= PROCESS ================= */}
       <section className="section">
@@ -177,7 +179,7 @@ export default async function Home() {
           <div className="process">
             {[
               ['Book online', 'Choose your service, artist, date and time. Studio or home service, it is up to you.'],
-              ['Secure via GCash', 'Pay a small partial deposit with GCash to lock in your slot. It goes toward your final price.'],
+              [`Secure via ${wallet}`, `Pay a small partial deposit with ${wallet} to lock in your slot. It goes toward your final price.`],
               ['Design together', 'Your artist sketches a custom design and fine-tunes it with you before the session.'],
               ['Get tattooed', 'Relax in a sterile, chill studio (or your own home) and walk away with aftercare guidance.'],
             ].map(([h, p], i) => (
@@ -247,7 +249,7 @@ export default async function Home() {
             <SplitTitle lines={['Questions,', <em key="e">answered</em>]} />
             <p className="lead" data-reveal>Still unsure? Message us on Facebook or Instagram, or call <a className="link-u gold" href={`tel:${shop.phone}`}>{shop.phone}</a>.</p>
           </div>
-          <Faq />
+          <Faq wallet={wallet} />
         </div>
       </section>
 

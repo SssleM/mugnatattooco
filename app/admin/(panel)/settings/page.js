@@ -3,30 +3,38 @@ import { paymongoEnabled } from '@/lib/paymongo';
 import ActionForm from '@/components/admin/ActionForm';
 import ImageField from '@/components/admin/ImageField';
 import { saveSettings } from '../../actions';
+import { getWallet } from '@/lib/wallet';
 
 const DAYS = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
 export default async function SettingsAdmin() {
   const { shop, booking, gcash } = await getSettings();
+  const wallet = getWallet(gcash);
   const blob = Boolean(process.env.BLOB_READ_WRITE_TOKEN);
   return (
     <>
       <div className="admin-top"><h1 className="display">Settings</h1></div>
       <div className="stack" style={{ gap: 20 }}>
         <div className="card">
-          <h2>GCash deposit</h2>
+          <h2>{wallet.name} deposit</h2>
           <div className="alert" style={{ marginBottom: 16, borderColor: 'var(--line-2)' }}>
-            Instant GCash checkout (PayMongo): <strong className={paymongoEnabled() ? 'gold' : 'muted'}>{paymongoEnabled() ? 'ON' : 'OFF'}</strong>.{' '}
-            {paymongoEnabled() ? 'Customers can pay in-app and bookings are confirmed automatically.' : 'Customers scan your QR and upload a receipt; you verify it in Bookings. Add PAYMONGO_SECRET_KEY on Vercel to enable instant checkout.'}
+            Instant {wallet.name} checkout (PayMongo): <strong className={paymongoEnabled() ? 'gold' : 'muted'}>{paymongoEnabled() ? 'ON' : 'OFF'}</strong>.{' '}
+            {paymongoEnabled() ? 'Customers can pay in-app and bookings are confirmed automatically.' : `Customers scan your ${wallet.name} QR and upload a receipt; you verify it in Bookings. Add PAYMONGO_SECRET_KEY on Vercel to enable instant checkout.`}
           </div>
           <ActionForm action={saveSettings} className="stack">
             <input type="hidden" name="section" value="gcash" />
-            <div className="grid-2">
-              <div className="field"><label>GCash account name</label><input name="accountName" className="input input-sm" defaultValue={gcash.accountName} /></div>
-              <div className="field"><label>GCash number</label><input name="number" className="input input-sm" defaultValue={gcash.number} /></div>
+            <div className="field"><label>E-wallet customers pay with</label>
+              <select name="provider" className="select input-sm" defaultValue={wallet.key}>
+                <option value="maya">Maya</option>
+                <option value="gcash">GCash</option>
+              </select>
             </div>
-            <div className="field"><label>GCash QR code (screenshot from GCash → Receive → QR)</label><ImageField name="qr" current={gcash.qrUrl} /></div>
-            <button className="btn btn-red btn-sm" style={{ justifySelf: 'start' }}>Save GCash</button>
+            <div className="grid-2">
+              <div className="field"><label>Account name</label><input name="accountName" className="input input-sm" defaultValue={gcash.accountName} /></div>
+              <div className="field"><label>Mobile number</label><input name="number" className="input input-sm" defaultValue={gcash.number} /></div>
+            </div>
+            <div className="field"><label>QR code (Maya app → Receive money → save your QR as an image)</label><ImageField name="qr" current={wallet.qrUrl} /></div>
+            <button className="btn btn-red btn-sm" style={{ justifySelf: 'start' }}>Save payment details</button>
           </ActionForm>
         </div>
 
@@ -92,7 +100,7 @@ export default async function SettingsAdmin() {
           <dl className="kv">
             <dt>Database</dt><dd className="gold">Connected</dd>
             <dt>Image storage</dt><dd>{blob ? <span className="gold">Vercel Blob</span> : process.env.VERCEL ? <span className="red">Missing: add a Blob store in Vercel → Storage</span> : 'Local folder (development)'}</dd>
-            <dt>GCash checkout</dt><dd>{paymongoEnabled() ? 'PayMongo (automatic)' : 'Manual QR + receipt'}</dd>
+            <dt>Deposit payments</dt><dd>{wallet.name} · {paymongoEnabled() ? 'PayMongo (automatic)' : 'Manual QR + receipt'}</dd>
           </dl>
         </div>
       </div>

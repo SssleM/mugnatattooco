@@ -346,22 +346,26 @@ write('artist-paeng', portrait('Paeng', 'PV', 10, RED));
 write('artist-kaye', portrait('Kaye', 'KS', 35, GOLD));
 write('artist-migs', portrait('Migs', 'MA', 200, '#7fb3d5'));
 
-/* ---------- Sample GCash QR ---------- */
-let seed = 7;
-const rand = () => ((seed = (seed * 16807) % 2147483647) / 2147483647);
-const N = 29;
-const cell = 10;
-let q = '';
-const finder = (x, y) => `<rect x="${x * cell}" y="${y * cell}" width="${7 * cell}" height="${7 * cell}" fill="#000"/><rect x="${(x + 1) * cell}" y="${(y + 1) * cell}" width="${5 * cell}" height="${5 * cell}" fill="#fff"/><rect x="${(x + 2) * cell}" y="${(y + 2) * cell}" width="${3 * cell}" height="${3 * cell}" fill="#000"/>`;
-const inFinder = (x, y) => (x < 8 && y < 8) || (x > N - 9 && y < 8) || (x < 8 && y > N - 9);
-for (let y = 0; y < N; y++) for (let x = 0; x < N; x++) if (!inFinder(x, y) && rand() > 0.52) q += `<rect x="${x * cell}" y="${y * cell}" width="${cell}" height="${cell}"/>`;
-fs.writeFileSync(path.join(OUT, 'gcash-qr-sample.svg'), `<svg xmlns="http://www.w3.org/2000/svg" viewBox="-30 -30 350 400" width="350" height="400">
-<rect x="-30" y="-30" width="350" height="400" rx="18" fill="#fff"/>
-<g fill="#000">${q}${finder(0, 0)}${finder(N - 7, 0)}${finder(0, N - 7)}</g>
-<rect x="105" y="105" width="80" height="80" rx="14" fill="#007dfe"/>
-<text x="145" y="153" text-anchor="middle" font-family="Arial, sans-serif" font-weight="bold" font-size="22" fill="#fff">G</text>
-<text x="145" y="330" text-anchor="middle" font-family="Arial, sans-serif" font-weight="bold" font-size="16" fill="#007dfe">SAMPLE QR</text>
-<text x="145" y="352" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#555">Upload your real GCash QR in Admin → Settings</text>
+/* ---------- Sample e-wallet QRs ---------- */
+function sampleQr(file, { color, letter, label, bg = '#fff', fg = '#000' }) {
+  let seed = 7;
+  const rand = () => ((seed = (seed * 16807) % 2147483647) / 2147483647);
+  const N = 29;
+  const cell = 10;
+  let q = '';
+  const finder = (x, y) => `<rect x="${x * cell}" y="${y * cell}" width="${7 * cell}" height="${7 * cell}" fill="${fg}"/><rect x="${(x + 1) * cell}" y="${(y + 1) * cell}" width="${5 * cell}" height="${5 * cell}" fill="${bg}"/><rect x="${(x + 2) * cell}" y="${(y + 2) * cell}" width="${3 * cell}" height="${3 * cell}" fill="${fg}"/>`;
+  const inFinder = (x, y) => (x < 8 && y < 8) || (x > N - 9 && y < 8) || (x < 8 && y > N - 9);
+  for (let y = 0; y < N; y++) for (let x = 0; x < N; x++) if (!inFinder(x, y) && rand() > 0.52) q += `<rect x="${x * cell}" y="${y * cell}" width="${cell}" height="${cell}"/>`;
+  fs.writeFileSync(path.join(OUT, file), `<svg xmlns="http://www.w3.org/2000/svg" viewBox="-30 -30 350 400" width="350" height="400">
+<rect x="-30" y="-30" width="350" height="400" rx="18" fill="${bg}"/>
+<g fill="${fg}">${q}${finder(0, 0)}${finder(N - 7, 0)}${finder(0, N - 7)}</g>
+<rect x="105" y="105" width="80" height="80" rx="14" fill="${color}"/>
+<text x="145" y="155" text-anchor="middle" font-family="Arial, sans-serif" font-weight="bold" font-size="26" fill="${bg === '#fff' ? '#fff' : '#000'}">${letter}</text>
+<text x="145" y="330" text-anchor="middle" font-family="Arial, sans-serif" font-weight="bold" font-size="16" fill="${color}">SAMPLE ${label} QR</text>
+<text x="145" y="352" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#777">Upload your real QR in Admin → Settings</text>
 </svg>`);
+}
+sampleQr('gcash-qr-sample.svg', { color: '#007dfe', letter: 'G', label: 'GCASH' });
+sampleQr('maya-qr-sample.svg', { color: '#00b964', letter: 'M', label: 'MAYA' });
 
 console.log('Art generated in', OUT);

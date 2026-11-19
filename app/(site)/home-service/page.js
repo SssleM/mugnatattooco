@@ -5,11 +5,14 @@ import ScooterArt from '@/components/ScooterArt';
 import { Arrow } from '@/components/Icons';
 import { getSettings } from '@/lib/data';
 import { peso } from '@/lib/utils';
+import { getWallet } from '@/lib/wallet';
 
 export const metadata = { title: 'Home Service' };
 
 export default async function HomeServicePage() {
-  const { booking } = await getSettings();
+  const settings = await getSettings();
+  const { booking } = settings;
+  const wallet = getWallet(settings.gcash).name;
   return (
     <>
       <section className="page-hero">
@@ -27,7 +30,7 @@ export default async function HomeServicePage() {
               <h2 className="display" style={{ fontSize: 'clamp(36px, 5vw, 64px)', margin: '0 0 10px' }}>How it works</h2>
               <ul className="checks">
                 <li>Book online and choose <strong>Home service</strong>, then enter your full address and landmarks.</li>
-                <li>Pay your partial deposit through GCash to lock in the date.</li>
+                <li>Pay your partial deposit through {wallet} to lock in the date.</li>
                 <li>Your artist arrives 30 minutes early to set up a clean, wrapped, single-use station.</li>
                 <li>We clean up, pack out all sharps safely, and leave you with aftercare instructions.</li>
               </ul>

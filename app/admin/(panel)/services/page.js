@@ -12,7 +12,7 @@ function Fields({ s = {} }) {
       <div className="field"><label>Description</label><input name="description" className="input input-sm" defaultValue={s.description} /></div>
       <div className="grid-3">
         <div className="field"><label>Starting price (₱)</label><input name="price_from" type="number" min="0" className="input input-sm" defaultValue={s.price_from ?? 0} /></div>
-        <div className="field"><label>GCash deposit (₱)</label><input name="deposit" type="number" min="1" className="input input-sm" required defaultValue={s.deposit ?? 500} /></div>
+        <div className="field"><label>Deposit (₱)</label><input name="deposit" type="number" min="1" className="input input-sm" required defaultValue={s.deposit ?? 500} /></div>
         <div className="field"><label>Order</label><input name="sort" type="number" className="input input-sm" defaultValue={s.sort ?? 10} /></div>
       </div>
       <label className="check"><input type="checkbox" name="active" defaultChecked={s.active ?? true} /> Bookable on website</label>
@@ -25,7 +25,7 @@ export default async function ServicesAdmin() {
   return (
     <>
       <div className="admin-top"><h1 className="display">Services & deposits</h1></div>
-      <p className="muted" style={{ marginTop: -14 }}>The deposit is the partial payment customers send through GCash when booking.</p>
+      <p className="muted" style={{ marginTop: -14 }}>The deposit is the partial payment customers send through Maya (or the e-wallet set in Settings) when booking.</p>
       <div className="stack">
         {services.map((s) => (
           <div className="card" key={s.id}>

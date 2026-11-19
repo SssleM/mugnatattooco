@@ -259,9 +259,9 @@ export async function saveSettings(_prev, fd) {
       });
     } else if (section === 'gcash') {
       const qr = fd.get('qr');
-      const next = { ...current.gcash, accountName: str(fd.get('accountName'), 80), number: str(fd.get('number'), 30) };
+      const next = { ...current.gcash, provider: fd.get('provider') === 'gcash' ? 'gcash' : 'maya', accountName: str(fd.get('accountName'), 80), number: str(fd.get('number'), 30) };
       if (isFile(qr)) {
-        next.qrUrl = await saveImage(qr, 'gcash');
+        next.qrUrl = await saveImage(qr, 'wallet');
         if (current.gcash.qrUrl !== next.qrUrl) await deleteImage(current.gcash.qrUrl);
       }
       await saveSetting('gcash', next);

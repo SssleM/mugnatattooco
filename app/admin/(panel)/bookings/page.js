@@ -8,7 +8,7 @@ import { deleteBooking, updateBooking } from '../../actions';
 const TABS = [
   ['All', {}],
   ['Pending', { status: 'pending' }],
-  ['Verify GCash', { pay: 'pending_verification' }],
+  ['Verify payment', { pay: 'pending_verification' }],
   ['Confirmed', { status: 'confirmed' }],
   ['Today', { when: 'today' }],
   ['Upcoming', { when: 'upcoming' }],
@@ -41,7 +41,7 @@ export default async function BookingsPage({ searchParams }) {
       <div className="admin-top">
         <h1 className="display">Bookings</h1>
         <form className="row" action="/admin/bookings">
-          <input name="q" className="input input-sm" placeholder="Search code, name, phone, GCash ref" defaultValue={sp.q || ''} style={{ width: 280 }} />
+          <input name="q" className="input input-sm" placeholder="Search code, name, phone, reference no." defaultValue={sp.q || ''} style={{ width: 280 }} />
           <button className="btn btn-ghost btn-sm">Search</button>
         </form>
       </div>
@@ -75,13 +75,13 @@ export default async function BookingsPage({ searchParams }) {
                   <dt>Size / style</dt><dd>{[b.size, b.style].filter(Boolean).join(' · ') || '—'}</dd>
                   <dt>Idea</dt><dd style={{ whiteSpace: 'pre-wrap' }}>{b.description || '—'}</dd>
                   <dt>Estimate</dt><dd>from {peso(b.estimate)}</dd>
-                  <dt>Deposit</dt><dd><strong className="gold">{peso(b.deposit)}</strong> · {b.payment_method === 'gcash_paymongo' ? 'GCash via PayMongo' : 'GCash (manual)'}</dd>
-                  {b.gcash_ref && <><dt>GCash ref.</dt><dd style={{ fontFamily: 'monospace' }}>{b.gcash_ref}</dd></>}
+                  <dt>Deposit</dt><dd><strong className="gold">{peso(b.deposit)}</strong> · {b.payment_method === 'gcash_paymongo' ? 'Online checkout (PayMongo)' : 'QR transfer + receipt'}</dd>
+                  {b.gcash_ref && <><dt>Reference no.</dt><dd style={{ fontFamily: 'monospace' }}>{b.gcash_ref}</dd></>}
                   <dt>Requested</dt><dd>{new Date(b.created_at).toLocaleString('en-PH', { timeZone: 'Asia/Manila' })}</dd>
                 </dl>
                 <div className="row" style={{ alignItems: 'flex-start' }}>
                   {b.reference_url && <a href={b.reference_url} target="_blank" rel="noreferrer"><span className="label">Reference</span>{/* eslint-disable-next-line @next/next/no-img-element */}<img className="thumb" src={b.reference_url} alt="Reference" /></a>}
-                  {b.receipt_url && <a href={b.receipt_url} target="_blank" rel="noreferrer"><span className="label">GCash receipt</span>{/* eslint-disable-next-line @next/next/no-img-element */}<img className="thumb" src={b.receipt_url} alt="Receipt" /></a>}
+                  {b.receipt_url && <a href={b.receipt_url} target="_blank" rel="noreferrer"><span className="label">Payment receipt</span>{/* eslint-disable-next-line @next/next/no-img-element */}<img className="thumb" src={b.receipt_url} alt="Receipt" /></a>}
                 </div>
               </div>
               <div className="stack">

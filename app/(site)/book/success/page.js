@@ -1,5 +1,7 @@
 import Link from 'next/link';
 import { db } from '@/lib/db';
+import { getSettings } from '@/lib/data';
+import { getWallet } from '@/lib/wallet';
 import { isCheckoutPaid, paymongoEnabled } from '@/lib/paymongo';
 import { fmtDate, fmtTime, peso } from '@/lib/utils';
 import { Arrow } from '@/components/Icons';
@@ -32,6 +34,7 @@ export default async function SuccessPage({ searchParams }) {
 
   const paid = b.payment_status === 'paid';
   const unpaidOnline = b.payment_method === 'gcash_paymongo' && !paid;
+  const wallet = getWallet((await getSettings()).gcash);
 
   return (
     <section className="page-hero">
@@ -45,9 +48,9 @@ export default async function SuccessPage({ searchParams }) {
           </h1>
           <p className="muted">Your booking code</p>
           <div className="code-pill">{b.code}</div>
-          {paid && <div className="alert alert-ok" style={{ marginBottom: 20 }}>Deposit of {peso(b.deposit)} received via GCash. Your slot is confirmed!</div>}
+          {paid && <div className="alert alert-ok" style={{ marginBottom: 20 }}>Deposit of {peso(b.deposit)} received via {wallet.name}. Your slot is confirmed!</div>}
           {b.payment_status === 'pending_verification' && (
-            <div className="alert alert-warn" style={{ marginBottom: 20 }}>We received your GCash reference <strong>{b.gcash_ref}</strong>. Our team will verify your {peso(b.deposit)} deposit and confirm by text shortly.</div>
+            <div className="alert alert-warn" style={{ marginBottom: 20 }}>We received your {wallet.name} reference <strong>{b.gcash_ref}</strong>. Our team will verify your {peso(b.deposit)} deposit and confirm by text shortly.</div>
           )}
           {unpaidOnline && (
             <div className="alert alert-error" style={{ marginBottom: 20 }}>Your deposit has not been paid yet, so the slot is not confirmed. You can try again by booking once more, or contact us.</div>
