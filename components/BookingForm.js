@@ -227,17 +227,17 @@ export default function BookingForm({ action, services, artists, booking, gcash,
 
         {/* STEP 5 — deposit */}
         <div className="step-panel" data-step="4" hidden={step !== 4}>
-          <h2 className="display">Secure with GCash</h2>
+          <h2 className="display">Secure with Maya</h2>
           <p className="muted" style={{ margin: 0 }}>Pay a partial deposit of <strong className="gold">{peso(service?.deposit)}</strong> to lock in your slot. It is deducted from your final price.</p>
           {paymongo && (
             <div className="choices">
               <label className="choice">
                 <input type="radio" name="pay_method" value="paymongo" defaultChecked />
-                <span className="box"><strong>Pay with GCash app</strong><small>Instant checkout, confirmed automatically.</small></span>
+                <span className="box"><strong>Pay with Maya app</strong><small>Instant checkout, confirmed automatically.</small></span>
               </label>
               <label className="choice">
                 <input type="radio" name="pay_method" value="manual" />
-                <span className="box"><strong>Send via GCash QR</strong><small>Send manually, then upload your receipt.</small></span>
+                <span className="box"><strong>Send via Maya QR</strong><small>Send manually, then upload your receipt.</small></span>
               </label>
             </div>
           )}
@@ -247,7 +247,7 @@ export default function BookingForm({ action, services, artists, booking, gcash,
             <>
               <div className="gcash-box">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={gcash.qrUrl} alt="GCash QR code" />
+                <img src={gcash.qrUrl} alt="Maya QR code" />
                 <div>
                   <span className="gcash-logo"><b>G</b> GCash</span>
                   <p style={{ margin: '14px 0 2px', opacity: 0.85 }}>Send exactly</p>
@@ -258,17 +258,17 @@ export default function BookingForm({ action, services, artists, booking, gcash,
               </div>
               <div className="grid-2">
                 <div className="field">
-                  <label htmlFor="gcash_ref">GCash reference no.</label>
+                  <label htmlFor="gcash_ref">Maya reference no.</label>
                   <input id="gcash_ref" name="gcash_ref" className="input" required minLength={6} placeholder="e.g. 1012 345 678901" inputMode="numeric" />
                 </div>
                 <div className="field">
                   <span className="label">Receipt screenshot</span>
-                  <ImageDrop name="receipt" label="Upload receipt" hint="Screenshot of your GCash confirmation" />
+                  <ImageDrop name="receipt" label="Upload receipt" hint="Screenshot of your Maya confirmation" />
                 </div>
               </div>
             </>
           ) : (
-            <div className="alert alert-ok">You will be redirected to a secure GCash checkout (via PayMongo) after you confirm. Your slot is held for you while you pay.</div>
+            <div className="alert alert-ok">You will be redirected to a secure Maya checkout (via PayMongo) after you confirm. Your slot is held for you while you pay.</div>
           )}
           <label style={{ display: 'flex', gap: 12, alignItems: 'flex-start', cursor: 'pointer' }}>
             <input type="checkbox" name="agree" required style={{ marginTop: 5, accentColor: 'var(--red)' }} />
@@ -284,7 +284,7 @@ export default function BookingForm({ action, services, artists, booking, gcash,
             <button type="button" className="btn btn-sm" onClick={next} data-magnetic>Continue <Arrow /></button>
           ) : (
             <button type="submit" className="btn btn-red" disabled={pending} data-magnetic>
-              {pending ? 'Booking…' : values.pay_method === 'paymongo' ? 'Pay deposit with GCash' : 'Confirm booking'} <Arrow />
+              {pending ? 'Booking…' : values.pay_method === 'paymongo' ? 'Pay deposit with Maya' : 'Confirm booking'} <Arrow />
             </button>
           )}
         </div>
