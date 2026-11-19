@@ -32,6 +32,25 @@ export default function BookingForm({ action, services, artists, booking, wallet
   const fee = values.location_type === 'home' ? Number(booking.homeServiceFee) : 0;
   const estimate = service ? service.price_from + fee : 0;
 
+  // Browsers restore form fields on reload/back without firing change events.
+  // Read them once on mount so the summary and deposit amount match what is selected.
+  useEffect(() => {
+    const form = formRef.current;
+    if (!form) return;
+    const sync = () => {
+      const fd = new FormData(form);
+      const restored = {};
+      for (const key of ['service_id', 'artist_id', 'location_type', 'date', 'time', 'pay_method']) {
+        const v = fd.get(key);
+        if (typeof v === 'string' && v !== '') restored[key] = v;
+      }
+      if (Object.keys(restored).length) setValues((v) => ({ ...v, ...restored }));
+    };
+    sync();
+    window.addEventListener('pageshow', sync);
+    return () => window.removeEventListener('pageshow', sync);
+  }, []);
+
   // server result handling
   useEffect(() => {
     if (!state) return;
