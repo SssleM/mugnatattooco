@@ -109,19 +109,38 @@ export default function Effects() {
 
   // Scroll reveals + counters (re-scan on route change and DOM changes)
   useEffect(() => {
+    // Elements revealed with a clip-path start fully clipped, and browsers never report a fully
+    // clipped element as visible. Watch their parent instead and reveal the element from there.
+    const proxies = new Map();
+    const SELECTOR = '[data-reveal], .split-line, [data-count]';
+    const reveal = (el) => {
+      el.classList.add('in');
+      if (el.hasAttribute('data-count') && !el.classList.contains('counted')) countUp(el);
+    };
     const io = new IntersectionObserver(
       (entries) => {
         entries.forEach((en) => {
           if (!en.isIntersecting) return;
-          en.target.classList.add('in');
-          if (en.target.hasAttribute('data-count')) countUp(en.target);
+          if (en.target.matches(SELECTOR)) reveal(en.target);
+          (proxies.get(en.target) || []).forEach(reveal);
+          proxies.delete(en.target);
           io.unobserve(en.target);
         });
       },
       { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
     );
     const scan = () =>
-      document.querySelectorAll('[data-reveal]:not(.in), .split-line:not(.in), [data-count]:not(.counted)').forEach((el) => io.observe(el));
+      document.querySelectorAll('[data-reveal]:not(.in), .split-line:not(.in), [data-count]:not(.counted)').forEach((el) => {
+        if (el.getAttribute('data-reveal') === 'clip' && el.parentElement) {
+          const parent = el.parentElement;
+          const list = proxies.get(parent) || [];
+          if (!list.includes(el)) list.push(el);
+          proxies.set(parent, list);
+          io.observe(parent);
+        } else {
+          io.observe(el);
+        }
+      });
     scan();
     const mo = new MutationObserver(scan);
     mo.observe(document.body, { childList: true, subtree: true });
