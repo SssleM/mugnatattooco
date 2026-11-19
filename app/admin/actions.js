@@ -238,6 +238,8 @@ export async function saveSettings(_prev, fd) {
         instagram: str(fd.get('instagram'), 200),
         facebook: str(fd.get('facebook'), 200),
         tiktok: str(fd.get('tiktok'), 200),
+        aboutImage1: await aboutImage(fd, 1, current.shop),
+        aboutImage2: await aboutImage(fd, 2, current.shop),
       });
     } else if (section === 'booking') {
       const slots = str(fd.get('timeSlots'), 300)
@@ -268,6 +270,22 @@ export async function saveSettings(_prev, fd) {
     }
     return done('Settings saved');
   } catch (e) { return fail(e); }
+}
+
+/** Upload, keep or remove one of the two "The studio" photos on the home page. */
+async function aboutImage(fd, n, shop) {
+  const old = shop[`aboutImage${n}`] || '';
+  const file = fd.get(`aboutImage${n}`);
+  if (isFile(file)) {
+    const url = await saveImage(file, 'about');
+    await deleteImage(old);
+    return url;
+  }
+  if (fd.get(`aboutImage${n}_remove`) === 'on') {
+    await deleteImage(old);
+    return '';
+  }
+  return old;
 }
 
 /* ---------------- Staff ---------------- */

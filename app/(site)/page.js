@@ -73,11 +73,11 @@ export default async function Home() {
           <div className="about-visual">
             <div className="img a" data-reveal="clip">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={featured[3]?.image_url || '/art/rose.svg'} alt="" />
+              <img src={shop.aboutImage1 || featured[3]?.image_url || '/art/rose.svg'} alt="MUGNA Tattoo studio" />
             </div>
             <div className="img b" data-reveal="clip" style={{ '--d': '0.2s' }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={featured[4]?.image_url || '/art/moth.svg'} alt="" />
+              <img src={shop.aboutImage2 || featured[4]?.image_url || '/art/moth.svg'} alt="MUGNA Tattoo work" />
             </div>
           </div>
           <div>

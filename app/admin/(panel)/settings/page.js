@@ -91,6 +91,17 @@ export default async function SettingsAdmin() {
               <div className="field"><label>Facebook URL</label><input name="facebook" className="input input-sm" defaultValue={shop.facebook} /></div>
               <div className="field"><label>TikTok URL</label><input name="tiktok" className="input input-sm" defaultValue={shop.tiktok} /></div>
             </div>
+            <span className="label">Home page “The studio” photos</span>
+            <p className="hint" style={{ marginTop: -8 }}>Shown beside “Made by hand. Worn for life.” Use a studio shot, your artist at work, or a favourite tattoo. Tall (portrait) photos look best. Leave empty to use featured gallery images.</p>
+            <div className="grid-2">
+              {[1, 2].map((n) => (
+                <div className="field" key={n}>
+                  <label>{n === 1 ? 'Large photo' : 'Small photo'}</label>
+                  <ImageField name={`aboutImage${n}`} current={shop[`aboutImage${n}`]} />
+                  {shop[`aboutImage${n}`] && <label className="check"><input type="checkbox" name={`aboutImage${n}_remove`} /> Remove this photo</label>}
+                </div>
+              ))}
+            </div>
             <button className="btn btn-red btn-sm" style={{ justifySelf: 'start' }}>Save shop info</button>
           </ActionForm>
         </div>
