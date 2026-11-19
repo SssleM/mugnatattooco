@@ -144,7 +144,27 @@ export default function Effects() {
     scan();
     const mo = new MutationObserver(scan);
     mo.observe(document.body, { childList: true, subtree: true });
-    return () => { io.disconnect(); mo.disconnect(); };
+
+    // Backup for browsers where IntersectionObserver misses an element: on scroll/resize,
+    // reveal anything that is inside the viewport (bounding boxes ignore clip-path).
+    let ticking = false;
+    const sweep = () => {
+      ticking = false;
+      const vh = window.innerHeight;
+      document.querySelectorAll('[data-reveal]:not(.in), .split-line:not(.in)').forEach((el) => {
+        const r = el.getBoundingClientRect();
+        if (r.bottom > 0 && r.top < vh - 40 && (r.width > 0 || r.height > 0)) reveal(el);
+      });
+    };
+    const onScroll = () => { if (!ticking) { ticking = true; requestAnimationFrame(sweep); } };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    const t = setTimeout(sweep, 1200);
+    return () => {
+      io.disconnect(); mo.disconnect(); clearTimeout(t);
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onScroll);
+    };
   }, [pathname]);
 
   return (
